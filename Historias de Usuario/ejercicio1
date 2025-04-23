@@ -1,0 +1,66 @@
+1) Alquiler de mobiliario
+Roles de Usuarios:
+	- Encargado
+	- Usuario
+Historias de Usuario
+	- Cargar mobiliario.
+	- Realizar reserva.
+	- Pagar con tarjeta. 
+
+ID: Cargar mobiliario.
+Título: Como encargado quiero cargar muebles en la aplicación para que los usuarios puedan realizar una resera de alquiler.
+Reglas de negocio: 
+	- No pueden existir códigos repetidos.
+Escenario 1: Carga exitosa.
+Dado el código de mueble “337” que no existe en el sistema,
+Cuando el encargado ingresa el código “337”, tipo silla, fecha 08/04/2025, estado “Disponible”, precio “2000” y presiona “Cargar”,
+Entonces el sistema informa que el mueble fue cargado con éxito y registra dicha publicación.
+Escenario 2: Carga fallida por código existente.
+Dado el código de mueble “337” que ya existe en el sistema,
+Cuando el encargado ingresa el código “337”, tipo silla, fecha 08/04/2025, estado “Disponible”, precio “2000” y presiona “Cargar”,
+Entonces el sistema informa que ya existe un mueble con ese código.
+
+ID: Realizar reserva.
+Título: Como usuario quiero alquilar muebles para utilizarlos. 
+Reglas de negocio:
+	- La reserva debe incluir al menos 3 muebles.
+ Escenario 1: Reserva exitosa.
+Dado los muebles A, B y C, para la fecha 04/10/2025, por 4 días y están disponibles y las condiciones son la adecuadas para un pago exitoso,
+Cuando el usuario selecciona los muebles A, B y C, la fecha 04/10/2025, cantidad de días 4 y presiona el botón “Confirmar reserva”, 
+Entonces el sistema redirige al usuario a la sección de pago con tarjeta de crédito, espera la respuesta, registra el alquiler de dichos muebles al usuario y le envía el número de reserva.
+Escenario 2: Reserva fallida por cantidad de muebles insuficiente.
+Dado los muebles A y B, 
+Cuando el usuario selecciona los muebles A y B, la fecha 07/08/2025, cantidad de días 7 y presiona el botón “Confirmar reserva”, 
+Entonces el sistema le informa al usuario que no cumple con la cantidad mínima de muebles para realizar una reserva.
+Escenario 3: Reserva fallida por error en el pago.
+Dado los muebles A, B, C y D, para la fecha 04/10/2025, por 4 días y están disponibles y las condiciones no son la adecuadas para un pago exitoso,
+Cuando el usuario selecciona los muebles A, B, C y D, la fecha 04/10/2025, cantidad de días 4 y presiona el botón “Confirmar reserva”, 
+Entonces el sistema redirige al usuario a la sección de pago con tarjeta de crédito, espera la respuesta, e informa que hubo un error en el pago.
+Escenario 4: Reserva fallida por no disponibilidad de los muebles en la fecha seleccionada.
+Dado los muebles A, B, C, D, la fecha 09/10/2025, por 7 días y no están disponibles,
+Cuando el usuario selecciona los muebles A, B, C y D, ingresa la fecha 09/10/2025 y la cantidad de días 7 y presiona “Confirmar reserva”,
+Entonces el sistema informa que los muebles no están disponibles en la fecha seleccionada.
+
+ID: Pagar con tarjeta.
+Titulo: Como usuario quiero realizar el pago del alquiler de muebles para poder utilizarlos.
+Reglas de negocio:
+	- Solo se aceptan números correspondientes a tarjetas de crédito.
+Escenario 1: Pago exitoso.
+Dado que la conexión con el servidor del banco es exitosa, el número “123456” corresponde al de una tarjeta de crédito y la tarjeta tiene saldo suficiente,
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema registra el pago e informa que la operación fue un éxito.
+Escenario 2: Pago fallido por número de tarjeta de crédito inexistente.
+Dado que la conexión con el servidor del banco es exitosa, el número “123456” no corresponde al de una tarjeta de crédito,
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema informa al usuario que el número ingresado no corresponde al de una tarjeta de crédito.
+Escenario 3: Pago fallido por saldo insuficiente.
+Dado que la conexión con el servidor del banco es exitosa, el número “123456” corresponde al de una tarjeta de crédito y la tarjeta no tiene saldo suficiente,
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema informa al usuario que la tarjeta no posee fondos suficientes para realizar la reserva.
+Escenario 4: Pago fallido por fallo en la conexión con el servidor del banco.
+Dado que la conexión con el servidor del banco no es exitosa, 
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema retorna un error por conexión fallida.
+
+
+//CORREGIDO

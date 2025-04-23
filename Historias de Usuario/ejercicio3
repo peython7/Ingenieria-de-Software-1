@@ -1,0 +1,50 @@
+3) Contratos
+Roles de usuario:
+	-Empleado de mesa de entradas.
+	-Empleado de rendiciones.
+Historias de usuario:
+	-Registro de minuta.
+	-Aprobación de minuta.
+ID: Registro de minuta
+Titulo: Como empleado de mesa de entradas quiero registrar minutas para registrar los acuerdos alcanzados.
+Reglas de negocio:
+	-El monto de un contrato no puede superar el valor de $25.000.
+	-La duración del contrato debe ser como máximo de 6 meses.
+
+
+CRITERIOS DE ACEPTACION:
+Escenario 1: Registro exitoso.
+Dado que se ingresa como duración de contrato 3 meses y valor del contrato $18.000,
+Cuando el empleado de mesa de entradas ingresa “Pablo”, 20-44433404-5, “tipo de contrato”, 20/10/2024, 3 meses, y $18000,
+Entonces el sistema le asocia un numero de minuta automáticamente.
+
+Escenario 2: Registro fallido por monto superior a $25.000.
+Dado que el monto es mayor a $25.000,
+Cuando el empleado de mesa de entradas ingresa “Cristian”, 20-45569404-5, “tipo de contrato”, 20/12/2024, 3 meses, y $30000,
+Entonces el sistema informa el error por “Monto superior a $25.000”.
+
+Escenario 3: Registro fallido por duración del contrato mayor a 6 meses.
+Dado que la duración del contrato es superior a 6 meses,
+Cuando el empleado de mesa de entradas ingresa “Fernando”, 20-21255948-5, “tipo de contrato”, 20/06/2024, 9 meses, y $12000,
+Entonces el sistema informa el error por “Duración mayor a 6 meses”.
+
+ID: Aprobación de minuta.
+Titulo: Como empleado de rendiciones quiero aprobar la minuta para contratar un empleado.
+Reglas de negocio:
+	-La persona a contratar no puede poseer 3 contratos vigentes (minutas aprobadas).
+	-La persona a contratar debe tener el CUIL habilitado por la AFIP.
+CRITERIOS DE ACEPTACION: 
+Escenario 1: Aprobación de minuta exitosa.
+Dado que se ingresa el número de minuta 444, y el CUIT asociado a la minuta posee 1 contrato vigente y la minuta no se encuentra aprobada,
+Cuando el empleado de rendiciones ingrese el número de minuta 444 y presione aprobar,
+Entonces el sistema envía un token de identificación de esta aplicación y el CUIT de la persona a contratar al servidor de la AFIP, se queda esperando una respuesta, y realiza la aprobación de la minuta. 
+Escenario 2: Aprobación de la minuta fallida por posesión de 3 o más contratos vigentes.
+Dado que se ingresa el número de minuta 999, y el CUIT asociado a la minuta posee 3 contratos vigentes, 
+Cuando el empleado de rendiciones ingrese el número de minuta 999 y presione aprobar,
+Entonces el sistema informa que la persona a contratar posee demasiados contratos vigentes.
+Escenario 3: Aprobación de minuta fallida por CUIT inhabilitado por la AFIP.
+Dado que se ingresa el numero de minuta 777, y el CUIT asociado a la minuta se encuentra inhabilitado por la AFIP,
+Cuando el empleado de rendiciones ingrese el número de minuta 777 y presione aprobar,
+Entonces el sistema envía un token de identificación de esta aplicación y el CUIT de la persona a contratar al servidor de la AFIP, se queda esperando una respuesta, e informa que hubo un error “CUIT inhabilitado por la AFIP”.
+
+//CORREGIDO

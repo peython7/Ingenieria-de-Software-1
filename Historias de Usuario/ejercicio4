@@ -1,0 +1,48 @@
+4) Venta de bebidas
+Roles de usuarios:
+	-Usuario no registrado
+	-Usuario identificado
+Historias de usuario:
+	-Registrase
+-Iniciar sesión.
+-Cerrar sesión.
+-Realizar compra.
+ID: Registrarse
+Titulo: Como usuario no registrado quiero registrarme en el sistema para poder comprar bebidas.
+Reglas de negocio:
+	-El mail se utiliza como nombre de usuario.
+	-La edad debe ser mayor o igual a 18 años.
+CRITERIOS DE ACEPTACION:
+Escenario 1: Registro exitoso
+Dado el nombre “Pedro”, apellido “Vega”, edad 21 años y el mail pedrovega@gmail.com que no se encuentra en el sistema,
+Cuando el usuario no registrado ingrese el nombre “Pedro”, apellido “Vega”, mail pedrovega@gmail.com y la edad 21 años,
+Entonces el sistema genera una contraseña y la envía al mail del registro.
+Escenario 2: Registro fallido por correo electrónico existente.
+Dado el nombre “Pedro”, apellido “Vega”, edad 21 años y el mail yaexiste@gmail.com que ya se encuentra asociado a una cuenta registrada en el sistema,
+Cuando el usuario no registrado ingrese el nombre “Pedro”, apellido “Vega”, mail yaexiste@gmail.com y la edad 21 años,
+Entonces el sistema informa al usuario que el mail con el que intenta registrarse ya se encuentra registrado en el sistema. 
+Escenario 3: Registro fallido por edad menor a 18 años.
+Dado la edad 16 años,
+Cuando el usuario ingrese nombre “Pablo”, apellido “Gómez”, mail pablito@gmail.com y la edad 16 años,
+Entonces el sistema muestra en pantalla el texto de la ley que impide la venta de bebidas alcohólicas a menores.
+
+ID: Realizar compra.
+Título: Como usuario identificado quiero realizar una compra para tener bebidas.
+Reglas de negocio:
+	-
+Escenario 1: Compra exitosa con ambos descuentos.
+Dado un usuario premium y la compra de $7000,
+Cuando el usuario presione el botón “Confirmar compra”,
+Entonces el sistema informa en pantalla el total a abonar menos ambos descuentos aplicados.
+Escenario 2: Compra exitosa sin descuentos.
+Dado un usuario no premium y la compra de $2000,
+Cuando el usuario presione el botón “Confirmar compra”,
+Entonces el sistema informa en pantalla el total a abonar.
+Escenario 3: Compra exitosa de usuario premium.
+Dado un usuario premium y la compra de $4000,
+Cuando el usuario presione el botón “Confirmar compra”,
+Entonces el sistema informa en pantalla el total a abonar menos el descuento por usuario premium aplicado.
+Escenario 4: Compra exitosa con descuento por superar los $4500.
+Dado un usuario no premium y la compra de $7000,
+Cuando el usuario presione el botón “Confirmar compra”,
+Entonces el sistema informa en pantalla el total a abonar menos le descuento por superar los $4500.

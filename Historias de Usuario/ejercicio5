@@ -1,0 +1,86 @@
+5) Casa de fotografía
+Roles de usuarios:
+	-Usuario no registrado
+	-Usuario autenticado
+Historias de usuario:
+	-Registrarse
+-Iniciar sesión.
+-Cerrar sesión.
+-Subir fotos.
+-Pagar con tarjeta.
+
+ID: Subir fotos.
+Titulo: Como usuario autenticado quiero subir fotos en el sistema para poder revelarlas.
+Reglas de negocio:
+	-Se puede subir un máximo de 50 fotos.
+CRITERIOS DE ACEPTACION:
+Escenario 1: Subida exitosa.
+Dado 1 foto y que no se ha llegado al máximo de fotos,
+Cuando el usuario seleccione una foto y presione “Subir foto”,
+Entonces el sistema guarda la foto.
+Escenario 2: Subida fallida.
+Dado una foto y que se ha llegado al máximo de fotos,
+Cuando el usuario seleccione una foto y presione “Subir foto”,
+Entonces el sistema informa que “Se ha llegado al máximo de fotos”.
+
+ID: Pagar con tarjeta.
+Titulo: Como usuario quiero pagar con tarjeta para revelar unas fotos.
+Reglas de negocio:
+	- Solo se aceptan números correspondientes a tarjetas de crédito.
+
+
+CRITERIOS DE ACEPTACION:
+Escenario 1: Pago exitoso.
+Dado que la conexión con el servidor del banco es exitosa, el número “123456” corresponde al de una tarjeta de crédito y la tarjeta tiene saldo suficiente,
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema registra el pago e informa que la operación fue un éxito.
+Escenario 2: Pago fallido por número de tarjeta de crédito inexistente.
+Dado que la conexión con el servidor del banco es exitosa, el número “123456” no corresponde al de una tarjeta de crédito,
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema informa al usuario que el número ingresado no corresponde al de una tarjeta de crédito.
+Escenario 3: Pago fallido por saldo insuficiente.
+Dado que la conexión con el servidor del banco es exitosa, el número “123456” corresponde al de una tarjeta de crédito y la tarjeta no tiene saldo suficiente,
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema informa al usuario que la tarjeta no posee fondos suficientes para realizar la reserva.
+Escenario 4: Pago fallido por fallo en la conexión con el servidor del banco.
+Dado que la conexión con el servidor del banco no es exitosa, 
+Cuando el usuario ingresa los datos de la tarjeta y presiona el botón “Pagar”,
+Entonces el sistema retorna un error por conexión fallida.
+
+ID: Registrarse.
+Titulo: Como usuario no registrado quiero registrarme en el sistema para acceder a las funcionalidades del mismo.
+Reglas de negocio:
+	-
+CRITERIOS DE ACEPTACION:
+Escenario 1: Registro exitoso.
+Dado el nombre “Pedro”, apellido “Vega”, email pepe@gmail.com, dirección “Gonnet”, nombre de usuario “Pedro08931” y contraseña “contraseña123”,
+Cuando el usuario no registrado ingrese el nombre “Pedro”, apellido “Vega”, email pepe@gmail.com, dirección “Gonnet”, nombre de usuario “Pedro08931” y contraseña “contraseña123” y presione “Regristrarse”,
+Entonces el sistema registra al usuario con esos datos e informa que el registro ha sido exitoso.
+
+ID: Iniciar sesión.
+Título: Como usuario registrado quiero autenticarme para acceder a las funciones del sistema.
+Reglas de negocio:
+	-
+CRITERIOS DE ACEPTACION:
+Escenario 1: Inicio de sesión exitoso.
+Dado el correo electrónico pepe@gmail.com que esta almacenado en el sistema y la contraseña “123456” que pertenece a ese usuario,
+Cuando el usuario ingrese el mail pepe@gmail.com y la contraseña “123456”,
+Entonces el sistema le habilita al usuario las funciones de un usuario autenticado.
+Escenario 2: Inicio de sesión fallido por correo incorrecto.
+Dado el correo electrónico noexiste@gmail.com que no se encuentra almacenado en el sistema,
+Cuando el usuario ingrese el mail noexiste@gmail.com y la contraseña “123456”,
+Entonces el sistema informa que el correo electrónico no pertenece a ningún usuario del sistema.
+Escenario 3: Inicio de sesión fallido por contraseña incorrecta.
+Dado el correo pedro@gmail.com que se encuentra en el sistema y la contraseña “7777” que no pertenece a ese usuario,
+Cuando el usuario ingrese el mail pedro@gmail.com y la contraseña “7777”,
+Entonces el sistema informa que la contraseña es incorrecta.
+
+ID: Cerrar sesión.
+Titulo: Como usuario autenticado quiero cerrar la sesión para evitar que otras personas usen la aplicación con mi cuenta.
+Reglas de negocio:
+	-
+CRITERIOS DE ACEPTACION:
+Escenario 1: Cierre de sesión exitoso.
+Dado que hay una sesión iniciada,
+Cuando el usuario identificado presione “Cerrar sesión”,
+Entonces el sistema cierra la sesión del usuario.

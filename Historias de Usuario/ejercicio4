@@ -46,3 +46,5 @@ Escenario 4: Compra exitosa con descuento por superar los $4500.
 Dado un usuario no premium y la compra de $7000,
 Cuando el usuario presione el botón “Confirmar compra”,
 Entonces el sistema informa en pantalla el total a abonar menos le descuento por superar los $4500.
+
+//CORREGIDO
